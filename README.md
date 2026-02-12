@@ -298,7 +298,7 @@ $50K–$70K            $70K–$95K            $95K–$130K           $130K–$20
 ## Learning Resources
 
 ### Free Starting Points
-- 🎓 [SailPoint University](https://community.sailpoint.com/) — Free IGA training
+- 🎓 [SailPoint University](https://university.sailpoint.com/) — Free IGA training
 - 🎓 [Microsoft Learn – Entra ID](https://learn.microsoft.com/) — Free Azure AD modules
 - 🎓 [Okta Developer Docs](https://developer.okta.com/) — Free dev account + tutorials
 - 🎓 [SANS Cyber Aces](https://www.cyberaces.org/) — Free security fundamentals
