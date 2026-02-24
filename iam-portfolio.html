@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunanda Thompson — IAM Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600;700&family=Fraunces:ital,wght@0,300;0,600;0,700;1,300;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #080d14;
+    --bg2:      #0c1420;
+    --surface:  #0f1c2e;
+    --surface2: #132235;
+    --border:   #1a3050;
+    --border2:  #1e3a5f;
+    --teal:     #00d4c8;
+    --teal-dim: #00a89e;
+    --teal-glow:#00d4c840;
+    --cyan:     #38bdf8;
+    --amber:    #f59e0b;
+    --rose:     #fb7185;
+    --green:    #4ade80;
+    --text:     #e2eaf4;
+    --text-mid: #8faabf;
+    --text-dim: #3d5a72;
+    --mono:     'IBM Plex Mono', monospace;
+    --serif:    'Fraunces', serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,200,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,200,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scanline {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 var(--teal-glow); }
+    70%  { box-shadow: 0 0 0 12px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+  @keyframes draw {
+    from { stroke-dashoffset: 300; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  .fade-up { animation: fadeUp 0.7s ease both; }
+  .fade-up-1 { animation-delay: 0.1s; }
+  .fade-up-2 { animation-delay: 0.2s; }
+  .fade-up-3 { animation-delay: 0.3s; }
+  .fade-up-4 { animation-delay: 0.4s; }
+  .fade-up-5 { animation-delay: 0.5s; }
+  .fade-up-6 { animation-delay: 0.6s; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8,13,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+  }
+  .nav-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--text-mid); font-weight: 300; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 48px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,212,200,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* Scanline effect */
+  .hero-scan {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero-scan::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,212,200,0.15), transparent);
+    animation: scanline 6s linear infinite;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--teal);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hero-role {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    letter-spacing: 0.08em;
+    margin-bottom: 28px;
+  }
+  .hero-role span {
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  .hero-desc {
+    font-family: var(--mono);
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    max-width: 540px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: var(--bg);
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    animation: pulse-ring 2.5s infinite;
+  }
+  .btn-primary:hover {
+    background: #00ede0;
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border2);
+    color: var(--text-mid);
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  /* Hero Right — Terminal Card */
+  .hero-terminal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(0,212,200,0.07), 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .terminal-bar {
+    background: var(--surface2);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .terminal-dot.r { background: #ff5f57; }
+  .terminal-dot.y { background: #febc2e; }
+  .terminal-dot.g { background: #28c840; }
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+  .terminal-body {
+    padding: 24px;
+    font-size: 0.8rem;
+    line-height: 2;
+  }
+  .t-prompt { color: var(--teal); }
+  .t-cmd    { color: var(--text); }
+  .t-out    { color: var(--text-mid); padding-left: 16px; }
+  .t-key    { color: var(--cyan); }
+  .t-val    { color: var(--green); }
+  .t-sec    { color: var(--amber); }
+  .t-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--teal);
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 90px 48px;
+    position: relative;
+    z-index: 1;
+  }
+  .section-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .section + .section {
+    border-top: 1px solid var(--border);
+  }
+
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.7rem;
+    color: var(--teal);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--teal);
+    opacity: 0.5;
+  }
+  .sec-heading {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 40px;
+    line-height: 1.15;
+  }
+  .sec-heading em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  /* ── IAM CORE CONCEPTS ── */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .concept-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .concept-card:hover {
+    border-color: var(--teal-dim);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,212,200,0.08);
+  }
+  .concept-card:hover::before { opacity: 1; }
+  .concept-icon {
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .concept-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  .concept-abbr {
+    font-size: 0.72rem;
+    color: var(--teal);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .concept-desc {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .concept-tags {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .ctag {
+    background: rgba(0,212,200,0.08);
+    border: 1px solid rgba(0,212,200,0.2);
+    color: var(--teal);
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover {
+    border-color: var(--border2);
+    box-shadow: 0 16px 50px rgba(0,0,0,0.4);
+    transform: translateY(-4px);
+  }
+  .project-card:hover::after { opacity: 1; }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    gap: 40px;
+    align-items: flex-start;
+  }
+  .project-card.featured .project-content { flex: 1; }
+  .project-card.featured .project-visual {
+    width: 280px;
+    flex-shrink: 0;
+  }
+
+  .project-num {
+    font-size: 0.68rem;
+    color: var(--teal);
+    letter-spacing: 0.14em;
+    font-weight: 600;
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .project-type {
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .project-desc {
+    font-size: 0.83rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .stack-tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    font-size: 0.68rem;
+    padding: 3px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+  }
+  .project-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .proj-link {
+    font-size: 0.75rem;
+    color: var(--teal);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .proj-link:hover { color: #00ede0; }
+  .proj-link.muted { color: var(--text-dim); }
+  .proj-link.muted:hover { color: var(--text-mid); }
+
+  /* RBAC Visual */
+  .rbac-visual {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 0.72rem;
+  }
+  .rbac-visual .rb-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .rb-box {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .rb-user  { background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); color: var(--cyan); }
+  .rb-role  { background: rgba(0,212,200,0.12); border: 1px solid rgba(0,212,200,0.3); color: var(--teal); }
+  .rb-perm  { background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3); color: var(--green); }
+  .rb-deny  { background: rgba(251,113,133,0.12); border: 1px solid rgba(251,113,133,0.3); color: var(--rose); }
+  .rb-arrow { color: var(--text-dim); font-size: 0.8rem; }
+  .rb-label { color: var(--text-dim); font-size: 0.65rem; letter-spacing: 0.08em; margin-bottom: 6px; }
+
+  /* ── SKILLS ── */
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .skill-group { }
+  .skill-group-title {
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .skill-group-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .skill-bar-row {
+    margin-bottom: 14px;
+  }
+  .skill-bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 0.78rem;
+    color: var(--text-mid);
+  }
+  .skill-bar-label span:last-child {
+    color: var(--teal);
+    font-weight: 600;
+    font-size: 0.7rem;
+  }
+  .skill-bar-track {
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--cyan));
+    transition: width 1s ease;
+  }
+  .skill-bar-fill.amber {
+    background: linear-gradient(90deg, var(--amber), #fbbf24);
+  }
+  .skill-bar-fill.rose {
+    background: linear-gradient(90deg, var(--rose), #fb7185);
+  }
+
+  .skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    font-size: 0.72rem;
+    padding: 5px 12px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .skill-chip:hover {
+    border-color: var(--teal-dim);
+    color: var(--teal);
+  }
+  .skill-chip.teal { border-color: rgba(0,212,200,0.3); color: var(--teal); background: rgba(0,212,200,0.07); }
+  .skill-chip.amber { border-color: rgba(245,158,11,0.3); color: var(--amber); background: rgba(245,158,11,0.07); }
+  .skill-chip.cyan { border-color: rgba(56,189,248,0.3); color: var(--cyan); background: rgba(56,189,248,0.07); }
+
+  /* ── FRAMEWORKS ── */
+  .frameworks-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .framework-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 18px;
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .framework-card:hover {
+    border-color: var(--teal-dim);
+    box-shadow: 0 0 30px rgba(0,212,200,0.07);
+  }
+  .fw-icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .fw-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+  .fw-desc { font-size: 0.72rem; color: var(--text-dim); line-height: 1.5; }
+
+  /* ── CERTS ── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: all 0.25s;
+  }
+  .cert-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+  }
+  .cert-badge {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    border: 1px solid;
+  }
+  .cert-badge.gold { background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.3); }
+  .cert-badge.teal { background: rgba(0,212,200,0.1); border-color: rgba(0,212,200,0.3); }
+  .cert-badge.cyan { background: rgba(56,189,248,0.1); border-color: rgba(56,189,248,0.3); }
+  .cert-name { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .cert-issuer { font-size: 0.72rem; color: var(--teal); letter-spacing: 0.06em; margin-bottom: 4px; }
+  .cert-year { font-size: 0.7rem; color: var(--text-dim); }
+
+  /* ── LEARNING PATH ── */
+  .path-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  .path-list::before {
+    content: '';
+    position: absolute;
+    left: 19px; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .path-item {
+    display: flex;
+    gap: 24px;
+    padding: 0 0 28px 0;
+    position: relative;
+  }
+  .path-dot {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    z-index: 1;
+    border: 1px solid;
+  }
+  .path-dot.done { background: rgba(0,212,200,0.12); border-color: var(--teal); }
+  .path-dot.active { background: rgba(245,158,11,0.12); border-color: var(--amber); animation: pulse-ring 2s infinite; }
+  .path-dot.next { background: var(--surface); border-color: var(--border); }
+  .path-content { padding-top: 6px; }
+  .path-status {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .path-status.done { color: var(--teal); }
+  .path-status.active { color: var(--amber); }
+  .path-status.next { color: var(--text-dim); }
+  .path-title { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .path-detail { font-size: 0.78rem; color: var(--text-mid); font-weight: 300; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .footer-name em { font-style: italic; color: var(--teal); }
+  .footer-sub { font-size: 0.78rem; color: var(--text-dim); }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+  }
+  .footer-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--teal); }
+  .footer-link-icon {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+  .footer-bottom {
+    max-width: 1300px;
+    margin: 32px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+
+  /* ── STATUS BAR ── */
+  .status-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 60px;
+    font-size: 0.72rem;
+    flex-wrap: wrap;
+  }
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-mid);
+  }
+  .status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .status-dot.green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .status-dot.amber { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+  .status-dot.teal  { background: var(--teal);  box-shadow: 0 0 6px var(--teal); }
+  .status-item strong { color: var(--text); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-terminal { display: none; }
+    .concepts-grid { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { flex-direction: column; }
+    .project-card.featured .project-visual { width: 100%; }
+    .frameworks-grid { grid-template-columns: repeat(2, 1fr); }
+    .certs-grid { grid-template-columns: repeat(2, 1fr); }
+    .skills-layout { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .section { padding: 60px 24px; }
+    nav { padding: 0 24px; }
+    .hero { padding: 90px 24px 50px; }
+    .concepts-grid { grid-template-columns: 1fr; }
+    .frameworks-grid { grid-template-columns: repeat(2, 1fr); }
+    .certs-grid { grid-template-columns: 1fr; }
+    footer { padding: 40px 24px; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-links { align-items: flex-start; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">sunanda<span>.thompson</span></a>
+    <div class="nav-links">
+      <a href="#concepts">IAM Concepts</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-scan"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag fade-up fade-up-1">Identity & Access Management Portfolio</div>
+      <h1 class="fade-up fade-up-2">Securing <em>Who</em><br>Gets Access<br>to <em>What</em></h1>
+      <p class="hero-role fade-up fade-up-3">Sunanda Thompson &nbsp;·&nbsp; <span>IAM Analyst (Aspiring)</span> &nbsp;·&nbsp; Texas</p>
+      <p class="hero-desc fade-up fade-up-4">
+        IT professional with an MS in Information Security & Digital Forensics building a focused portfolio in Identity & Access Management — covering access control models, directory services, privileged access, and compliance frameworks.
+      </p>
+      <div class="hero-ctas fade-up fade-up-5">
+        <a href="#projects" class="btn-primary">↓ View Projects</a>
+        <a href="mailto:sunanda.thompson@gmail.com" class="btn-secondary">✉ Get In Touch</a>
+      </div>
+    </div>
+
+    <!-- Terminal -->
+    <div class="hero-terminal fade-up fade-up-6">
+      <div class="terminal-bar">
+        <span class="terminal-dot r"></span>
+        <span class="terminal-dot y"></span>
+        <span class="terminal-dot g"></span>
+        <span class="terminal-title">iam-profile.sh</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
+        <div class="t-out"><span class="t-key">name</span>:   <span class="t-val">"Sunanda Thompson"</span></div>
+        <div class="t-out"><span class="t-key">role</span>:   <span class="t-val">"IAM Analyst"</span></div>
+        <div class="t-out"><span class="t-key">status</span>: <span class="t-sec">BUILDING_PORTFOLIO</span></div>
+        <br>
+        <div><span class="t-prompt">$</span> <span class="t-cmd">list-skills --iam</span></div>
+        <div class="t-out">✓ <span class="t-val">Active Directory</span></div>
+        <div class="t-out">✓ <span class="t-val">RBAC / ABAC Models</span></div>
+        <div class="t-out">✓ <span class="t-val">Group Policy Management</span></div>
+        <div class="t-out">✓ <span class="t-val">Zero Trust Principles</span></div>
+        <div class="t-out">✓ <span class="t-val">PCI-DSS · NIST · ISO</span></div>
+        <br>
+        <div><span class="t-prompt">$</span> <span class="t-cmd">get-cert --latest</span></div>
+        <div class="t-out"><span class="t-sec">ISC² CC</span> — <span class="t-val">VERIFIED ✓</span></div>
+        <br>
+        <div><span class="t-prompt">$</span> <span class="t-cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IAM CONCEPTS -->
+<section class="section" id="concepts">
+  <div class="section-inner">
+    <div class="sec-label">Core Knowledge</div>
+    <h2 class="sec-heading">IAM <em>Fundamentals</em></h2>
+
+    <div class="concepts-grid">
+
+      <div class="concept-card">
+        <span class="concept-icon">🔐</span>
+        <span class="concept-abbr">RBAC</span>
+        <div class="concept-title">Role-Based Access Control</div>
+        <div class="concept-desc">Permissions are assigned to roles, not individuals. Users gain access by being assigned to roles that carry the necessary permissions — reducing admin overhead and enforcing least privilege.</div>
+        <div class="concept-tags">
+          <span class="ctag">Least Privilege</span>
+          <span class="ctag">Role Assignment</span>
+          <span class="ctag">Access Review</span>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <span class="concept-icon">🎭</span>
+        <span class="concept-abbr">ABAC</span>
+        <div class="concept-title">Attribute-Based Access Control</div>
+        <div class="concept-desc">Access decisions are made using attributes of users, resources, and the environment. More granular than RBAC — a user's department, clearance level, location, and time of day can all influence access.</div>
+        <div class="concept-tags">
+          <span class="ctag">Policy Engine</span>
+          <span class="ctag">Dynamic Access</span>
+          <span class="ctag">Context-Aware</span>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <span class="concept-icon">🏢</span>
+        <span class="concept-abbr">AD / LDAP</span>
+        <div class="concept-title">Directory Services</div>
+        <div class="concept-desc">Microsoft Active Directory and LDAP-based directories are the backbone of enterprise IAM. Managing OUs, Groups, GPOs, and Service Accounts is a daily DBA/IAM task in most organizations.</div>
+        <div class="concept-tags">
+          <span class="ctag">Active Directory</span>
+          <span class="ctag">GPO</span>
+          <span class="ctag">OU Structure</span>
+          <span class="ctag">LDAP</span>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <span class="concept-icon">🛡️</span>
+        <span class="concept-abbr">PAM</span>
+        <div class="concept-title">Privileged Access Management</div>
+        <div class="concept-desc">Securing, controlling, and auditing access for privileged accounts (admins, root, service accounts). PAM tools vault credentials, enforce MFA, session recording, and just-in-time access.</div>
+        <div class="concept-tags">
+          <span class="ctag">Just-in-Time</span>
+          <span class="ctag">Credential Vault</span>
+          <span class="ctag">Session Audit</span>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <span class="concept-icon">🔑</span>
+        <span class="concept-abbr">SSO / MFA</span>
+        <div class="concept-title">Authentication & Federation</div>
+        <div class="concept-desc">Single Sign-On (SSO) reduces friction while maintaining security. MFA adds layered verification. Protocols like SAML 2.0, OAuth 2.0, and OIDC enable federated identity across cloud services.</div>
+        <div class="concept-tags">
+          <span class="ctag">SAML 2.0</span>
+          <span class="ctag">OAuth 2.0</span>
+          <span class="ctag">OIDC</span>
+          <span class="ctag">MFA</span>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <span class="concept-icon">🚫</span>
+        <span class="concept-abbr">ZT / PoLP</span>
+        <div class="concept-title">Zero Trust & Least Privilege</div>
+        <div class="concept-desc">Never trust, always verify. Zero Trust assumes breach and validates every request regardless of network location. Principle of Least Privilege ensures users have only the minimum access required for their role.</div>
+        <div class="concept-tags">
+          <span class="ctag">Zero Trust</span>
+          <span class="ctag">Microsegmentation</span>
+          <span class="ctag">Continuous Auth</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-inner">
+    <div class="sec-label">Portfolio Work</div>
+    <h2 class="sec-heading">IAM <em>Projects</em></h2>
+
+    <div class="status-bar">
+      <div class="status-item"><span class="status-dot green"></span> <strong>Live</strong> — Deployed &amp; viewable</div>
+      <div class="status-item"><span class="status-dot amber"></span> <strong>In Progress</strong> — Actively building</div>
+      <div class="status-item"><span class="status-dot teal"></span> <strong>Planned</strong> — Coming soon</div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Featured -->
+      <div class="project-card featured">
+        <div class="project-content">
+          <div class="project-num">01 · <span style="color:var(--green)">● LIVE</span></div>
+          <div class="project-type">Active Directory Lab</div>
+          <div class="project-title">Enterprise RBAC Model — Home Lab Simulation</div>
+          <div class="project-desc">
+            A fully documented Windows Server Active Directory lab simulating a real enterprise environment. Includes OU structure design, department-based security groups, Group Policy Objects for workstation hardening, and a complete RBAC matrix mapping roles to permissions. Demonstrates joiner/mover/leaver (JML) processes and access certification workflows.
+          </div>
+          <div class="project-stack">
+            <span class="stack-tag">Windows Server 2022</span>
+            <span class="stack-tag">Active Directory</span>
+            <span class="stack-tag">Group Policy</span>
+            <span class="stack-tag">PowerShell</span>
+            <span class="stack-tag">RBAC</span>
+          </div>
+          <div class="project-links" style="margin-top:16px;">
+            <a href="#" class="proj-link">→ View on GitHub</a>
+            <a href="#" class="proj-link muted">Documentation ↗</a>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="rbac-visual">
+            <div class="rb-label">RBAC ACCESS MATRIX</div>
+            <div class="rb-row">
+              <span class="rb-box rb-user">Alice (HR)</span>
+              <span class="rb-arrow">→</span>
+              <span class="rb-box rb-role">HR_Staff</span>
+              <span class="rb-arrow">→</span>
+              <span class="rb-box rb-perm">HRIS_Read</span>
+            </div>
+            <div class="rb-row">
+              <span class="rb-box rb-user">Bob (IT)</span>
+              <span class="rb-arrow">→</span>
+              <span class="rb-box rb-role">IT_Admin</span>
+              <span class="rb-arrow">→</span>
+              <span class="rb-box rb-perm">AD_Manage</span>
+            </div>
+            <div class="rb-row">
+              <span class="rb-box rb-user">Carol (Dev)</span>
+              <span class="rb-arrow">→</span>
+              <span class="rb-box rb-role">Dev_Read</span>
+              <span class="rb-arrow">→</span>
+              <span class="rb-box rb-deny">✗ Finance</span>
+            </div>
+            <div class="rb-row">
+              <span class="rb-box rb-user">Dan (Fin)</span>
+              <span class="rb-arrow">→</span>
+              <span class="rb-box rb-role">Finance</span>
+              <span class="rb-arrow">→</span>
+              <span class="rb-box rb-perm">GL_Write</span>
+            </div>
+            <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--border); font-size:0.65rem; color:var(--text-dim);">
+              OU=Corp → OU=Dept → Security Group → Permission
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02 · <span style="color:var(--amber)">● IN PROGRESS</span></div>
+        <div class="project-type">Access Control Policy</div>
+        <div class="project-title">Zero Trust Access Policy Framework</div>
+        <div class="project-desc">
+          A written policy and implementation guide for adopting Zero Trust architecture in a mid-size organization. Covers identity verification, device compliance checks, network microsegmentation, and continuous monitoring. Includes gap analysis template comparing current-state vs. NIST SP 800-207.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">NIST SP 800-207</span>
+          <span class="stack-tag">Zero Trust</span>
+          <span class="stack-tag">Policy Writing</span>
+          <span class="stack-tag">Gap Analysis</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="proj-link muted">In Progress — Coming Soon</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">03 · <span style="color:var(--amber)">● IN PROGRESS</span></div>
+        <div class="project-type">PowerShell Automation</div>
+        <div class="project-title">AD User Lifecycle Automation Scripts</div>
+        <div class="project-desc">
+          PowerShell scripts automating the Joiner-Mover-Leaver process in Active Directory. Includes bulk user provisioning from CSV, automated group assignment by department, account disabling and deprovisioning on termination, and access review reporting.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">PowerShell</span>
+          <span class="stack-tag">Active Directory</span>
+          <span class="stack-tag">Automation</span>
+          <span class="stack-tag">CSV Import</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="proj-link muted">In Progress — Coming Soon</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">04 · <span style="color:var(--teal)">● PLANNED</span></div>
+        <div class="project-type">Compliance Documentation</div>
+        <div class="project-title">IAM Controls Mapped to NIST CSF & ISO 27001</div>
+        <div class="project-desc">
+          A compliance mapping document showing how IAM controls satisfy requirements from NIST Cybersecurity Framework and ISO/IEC 27001 Annex A. Designed as a reference artifact for security audits and risk assessments.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">NIST CSF</span>
+          <span class="stack-tag">ISO 27001</span>
+          <span class="stack-tag">Controls Mapping</span>
+          <span class="stack-tag">Risk Assessment</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="proj-link muted">Planned</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">05 · <span style="color:var(--teal)">● PLANNED</span></div>
+        <div class="project-type">Cloud IAM</div>
+        <div class="project-title">AWS IAM Roles & Policies Lab</div>
+        <div class="project-desc">
+          Hands-on AWS IAM lab covering user creation, policy attachments, assume-role patterns, permission boundaries, and Service Control Policies (SCPs). Demonstrates cloud-native IAM compared to on-premise Active Directory.
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">AWS IAM</span>
+          <span class="stack-tag">JSON Policies</span>
+          <span class="stack-tag">SCPs</span>
+          <span class="stack-tag">Cloud Security</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="proj-link muted">Planned</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-inner">
+    <div class="sec-label">Technical Proficiency</div>
+    <h2 class="sec-heading">IAM <em>Skills</em></h2>
+
+    <div class="skills-layout">
+      <div>
+        <div class="skill-group">
+          <div class="skill-group-title">Identity & Access</div>
+
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Active Directory & Group Policy</span><span>Strong</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>RBAC Design & Implementation</span><span>Strong</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>IAM Policy & Compliance</span><span>Developing</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>SSO / SAML / OAuth 2.0</span><span>Developing</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>PAM Concepts</span><span>Developing</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:50%"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group" style="margin-top:32px;">
+          <div class="skill-group-title">Scripting & Automation</div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>PowerShell</span><span>Strong</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill amber" style="width:75%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Bash / Shell Scripting</span><span>Strong</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill amber" style="width:72%"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Python (Automation)</span><span>Comfortable</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill amber" style="width:68%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="skill-group">
+          <div class="skill-group-title">Security Tools & Platforms</div>
+          <div class="skill-chips">
+            <span class="skill-chip teal">Wireshark</span>
+            <span class="skill-chip teal">Nmap</span>
+            <span class="skill-chip teal">Nessus</span>
+            <span class="skill-chip teal">Burp Suite</span>
+            <span class="skill-chip teal">OpenVAS</span>
+            <span class="skill-chip teal">Metasploit</span>
+            <span class="skill-chip teal">Kali Linux</span>
+            <span class="skill-chip teal">FTK / Autopsy</span>
+            <span class="skill-chip teal">Sophos</span>
+          </div>
+        </div>
+
+        <div class="skill-group" style="margin-top:28px;">
+          <div class="skill-group-title">Operating Systems</div>
+          <div class="skill-chips">
+            <span class="skill-chip amber">Windows Server 2022</span>
+            <span class="skill-chip amber">Windows 10/11</span>
+            <span class="skill-chip amber">Ubuntu Linux</span>
+            <span class="skill-chip amber">Kali Linux</span>
+            <span class="skill-chip amber">macOS</span>
+          </div>
+        </div>
+
+        <div class="skill-group" style="margin-top:28px;">
+          <div class="skill-group-title">Networking & VPN</div>
+          <div class="skill-chips">
+            <span class="skill-chip cyan">Cisco AnyConnect</span>
+            <span class="skill-chip cyan">OpenVPN</span>
+            <span class="skill-chip cyan">DNS / DHCP</span>
+            <span class="skill-chip cyan">Firewall Rules</span>
+            <span class="skill-chip cyan">TCP/IP</span>
+            <span class="skill-chip cyan">VLANs</span>
+          </div>
+        </div>
+
+        <div class="skill-group" style="margin-top:28px;">
+          <div class="skill-group-title">ITSM & Collaboration</div>
+          <div class="skill-chips">
+            <span class="skill-chip">ServiceNow</span>
+            <span class="skill-chip">Jitbit</span>
+            <span class="skill-chip">Citrix</span>
+            <span class="skill-chip">Microsoft Teams</span>
+            <span class="skill-chip">GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORKS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="sec-label">Governance & Compliance</div>
+    <h2 class="sec-heading">Regulatory <em>Frameworks</em></h2>
+    <div class="frameworks-grid">
+      <div class="framework-card">
+        <div class="fw-icon">📋</div>
+        <div class="fw-name">NIST CSF</div>
+        <div class="fw-desc">Cybersecurity Framework — Identify, Protect, Detect, Respond, Recover</div>
+      </div>
+      <div class="framework-card">
+        <div class="fw-icon">🏦</div>
+        <div class="fw-name">PCI-DSS</div>
+        <div class="fw-desc">Payment Card Industry standards — applied in e-commerce payment gateway work</div>
+      </div>
+      <div class="framework-card">
+        <div class="fw-icon">🌐</div>
+        <div class="fw-name">ISO 27001</div>
+        <div class="fw-desc">Information Security Management System — controls and risk management</div>
+      </div>
+      <div class="framework-card">
+        <div class="fw-icon">🏛️</div>
+        <div class="fw-name">NIST SP 800-207</div>
+        <div class="fw-desc">Zero Trust Architecture — the federal standard for modern access control design</div>
+      </div>
+      <div class="framework-card">
+        <div class="fw-icon">👁️</div>
+        <div class="fw-name">SOX / HIPAA</div>
+        <div class="fw-desc">Access control and audit requirements in financial and healthcare environments</div>
+      </div>
+      <div class="framework-card">
+        <div class="fw-icon">♟️</div>
+        <div class="fw-name">MITRE ATT&CK</div>
+        <div class="fw-desc">Adversarial tactics mapped to IAM-related attack vectors (credential access, privilege escalation)</div>
+      </div>
+      <div class="framework-card">
+        <div class="fw-icon">🔄</div>
+        <div class="fw-name">Agile / Scrum</div>
+        <div class="fw-desc">Applied Scrum for Agile Project Management — EdX certified</div>
+      </div>
+      <div class="framework-card">
+        <div class="fw-icon">📌</div>
+        <div class="fw-name">ITIL Concepts</div>
+        <div class="fw-desc">IT service management principles applied in helpdesk and ticket management work</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certs">
+  <div class="section-inner">
+    <div class="sec-label">Credentials</div>
+    <h2 class="sec-heading">Certifications & <em>Education</em></h2>
+
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-badge gold">🛡️</div>
+        <div>
+          <div class="cert-name">Certified in Cybersecurity (CC)</div>
+          <div class="cert-issuer">ISC²</div>
+          <div class="cert-year">2025 · Verified</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge teal">🔴</div>
+        <div>
+          <div class="cert-name">Oracle SQL & PL/SQL Developer</div>
+          <div class="cert-issuer">Arizona Western College</div>
+          <div class="cert-year">2023 · Verified</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge cyan">📊</div>
+        <div>
+          <div class="cert-name">Data Analysis Professional Certificate</div>
+          <div class="cert-issuer">EdX</div>
+          <div class="cert-year">2025 · Verified</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge gold">📈</div>
+        <div>
+          <div class="cert-name">Data Analytics Bootcamp</div>
+          <div class="cert-issuer">Alex the Analyst — SQL, Excel, Tableau, Python, Power BI</div>
+          <div class="cert-year">2025 · Verified</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge teal">⚡</div>
+        <div>
+          <div class="cert-name">Applied Scrum for Agile PM</div>
+          <div class="cert-issuer">EdX</div>
+          <div class="cert-year">2025 · Verified</div>
+        </div>
+      </div>
+      <div class="cert-card" style="border-style:dashed; opacity:0.6;">
+        <div class="cert-badge cyan">🎯</div>
+        <div>
+          <div class="cert-name">CompTIA Security+ *(Target)*</div>
+          <div class="cert-issuer">CompTIA</div>
+          <div class="cert-year">Planned — 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div style="margin-top:50px; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:28px;">
+        <div style="font-size:0.7rem; color:var(--teal); letter-spacing:0.12em; margin-bottom:10px;">GRADUATE</div>
+        <div style="font-family:var(--serif); font-size:1.1rem; font-weight:600; color:var(--text); margin-bottom:4px;">M.S. Information Security & Digital Forensics</div>
+        <div style="font-size:0.8rem; color:var(--text-mid); margin-bottom:6px;">Niagara University · 2019–2021</div>
+        <div style="font-size:0.78rem; color:var(--text-dim); font-style:italic;">Thesis: Ransomware — Analysis, Impact, and Recommendations</div>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:28px;">
+        <div style="font-size:0.7rem; color:var(--teal); letter-spacing:0.12em; margin-bottom:10px;">UNDERGRADUATE</div>
+        <div style="font-family:var(--serif); font-size:1.1rem; font-weight:600; color:var(--text); margin-bottom:4px;">B.S. Computer Science</div>
+        <div style="font-size:0.8rem; color:var(--text-mid); margin-bottom:6px;">Huntington University · 2015–2019</div>
+        <div style="font-size:0.78rem; color:var(--text-dim);">Minors: Criminal Justice & Cybersecurity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING PATH -->
+<section class="section">
+  <div class="section-inner">
+    <div class="sec-label">Growth Roadmap</div>
+    <h2 class="sec-heading">IAM Learning <em>Path</em></h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px;">
+      <div>
+        <div class="path-list">
+          <div class="path-item">
+            <div class="path-dot done">✓</div>
+            <div class="path-content">
+              <div class="path-status done">Completed</div>
+              <div class="path-title">ISC² Certified in Cybersecurity (CC)</div>
+              <div class="path-detail">Security fundamentals, access control concepts, network security — 2025</div>
+            </div>
+          </div>
+          <div class="path-item">
+            <div class="path-dot done">✓</div>
+            <div class="path-content">
+              <div class="path-status done">Completed</div>
+              <div class="path-title">Active Directory & Group Policy Mastery</div>
+              <div class="path-detail">Managing users, groups, OUs, GPOs in enterprise environments</div>
+            </div>
+          </div>
+          <div class="path-item">
+            <div class="path-dot done">✓</div>
+            <div class="path-content">
+              <div class="path-status done">Completed</div>
+              <div class="path-title">PowerShell Scripting for AD Automation</div>
+              <div class="path-detail">Batch scripts, user provisioning, automated access reports</div>
+            </div>
+          </div>
+          <div class="path-item">
+            <div class="path-dot active">▶</div>
+            <div class="path-content">
+              <div class="path-status active">In Progress</div>
+              <div class="path-title">Zero Trust & PAM Deep Dive</div>
+              <div class="path-detail">NIST SP 800-207, privileged access management tools, just-in-time access</div>
+            </div>
+          </div>
+          <div class="path-item">
+            <div class="path-dot next">○</div>
+            <div class="path-content">
+              <div class="path-status next">Planned</div>
+              <div class="path-title">CompTIA Security+</div>
+              <div class="path-detail">Covering identity, access, and authentication controls — target 2026</div>
+            </div>
+          </div>
+          <div class="path-item">
+            <div class="path-dot next">○</div>
+            <div class="path-content">
+              <div class="path-status next">Planned</div>
+              <div class="path-title">Cloud IAM — AWS & Azure AD</div>
+              <div class="path-detail">IAM roles, conditional access policies, Entra ID, federation</div>
+            </div>
+          </div>
+          <div class="path-item" style="padding-bottom:0;">
+            <div class="path-dot next">○</div>
+            <div class="path-content">
+              <div class="path-status next">Long-term</div>
+              <div class="path-title">SailPoint / CyberArk Proficiency</div>
+              <div class="path-detail">Enterprise IAM governance platforms used by Fortune 500 companies</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why IAM -->
+      <div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:32px; margin-bottom:20px;">
+          <div style="font-size:0.7rem; color:var(--teal); letter-spacing:0.14em; margin-bottom:16px;">WHY IAM?</div>
+          <div style="font-family:var(--serif); font-size:1.3rem; font-weight:300; font-style:italic; color:var(--text); line-height:1.6; margin-bottom:16px;">
+            "Identity is the new perimeter. In a world without network borders, knowing <em>who</em> can access <em>what</em> — and auditing it — is the foundation of modern security."
+          </div>
+          <div style="font-size:0.8rem; color:var(--text-mid); line-height:1.75;">
+            With an MS in Information Security, hands-on experience in Active Directory, and a background in both IT support and cybersecurity, IAM is the natural convergence of everything I've built. I understand the technical side (AD, scripting, protocols) and the compliance side (PCI-DSS, NIST, ISO) — which is exactly what IAM teams need.
+          </div>
+        </div>
+        <div style="background:rgba(0,212,200,0.05); border:1px solid rgba(0,212,200,0.2); border-radius:12px; padding:24px;">
+          <div style="font-size:0.7rem; color:var(--teal); letter-spacing:0.14em; margin-bottom:12px;">OPEN TO ROLES</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span class="skill-chip teal">IAM Analyst</span>
+            <span class="skill-chip teal">Identity Engineer</span>
+            <span class="skill-chip teal">Access Management Specialist</span>
+            <span class="skill-chip teal">Jr. Security Analyst</span>
+            <span class="skill-chip teal">IT Support / Systems Admin</span>
+            <span class="skill-chip teal">Jr. DBA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Sunanda <em>Thompson</em></div>
+      <div class="footer-sub">IAM Analyst · Texas · Open to Remote & Hybrid Roles</div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:sunanda.thompson@gmail.com" class="footer-link">
+        <span class="footer-link-icon">✉</span>
+        sunanda.thompson@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/sunanda-thompson-5242aa177" class="footer-link">
+        <span class="footer-link-icon">in</span>
+        linkedin.com/in/sunanda-thompson
+      </a>
+      <a href="https://github.com/sunanda-thompson" class="footer-link">
+        <span class="footer-link-icon">⌥</span>
+        github.com/sunanda-thompson
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Sunanda Thompson · IAM Portfolio</span>
+    <span style="color:var(--teal);">Make every day count.</span>
+  </div>
+</footer>
+
+</body>
+</html>
